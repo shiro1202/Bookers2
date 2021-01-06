@@ -7,7 +7,7 @@
     <%= @user.name %>
     <h5>introduction</h5>
     <%= @user.introduction %>
-    <%= link_to"",edit_user_path(@user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench"%>
+    <%= link_to "edit",edit_user_path(@user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench"%>
 
     <h1>New book</h1>
       <%= form_with model: @book, local:true do |f| %>
