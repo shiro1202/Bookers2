@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @user = User.new
@@ -23,7 +24,7 @@ class UsersController < ApplicationController
       flash[:notice] = "successfully"
       redirect_to user_path
     else
-      flash.now[:ale] = "errors prohibited this obj from being saved:"
+      flash.now[:alert] = "errors prohibited this obj from being saved:"
       render user_edit_path
     end
   end
