@@ -31,6 +31,18 @@
       </nav>
     </header>
     
+    <% if flash[:notice] %>
+      <div class="flash">
+           <%= flash[:notice] %>
+      </div>
+    <% end %>
+    
+    <% if flash[:error] %>
+      <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    <% end %>
+    
     <%= yield %>
     
     <footer>

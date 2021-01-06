@@ -3,8 +3,13 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    @book.save
-    redirect_to book_path(@book.id)
+    if @book.save
+      flash[:notice] = "successfully"
+      redirect_to book_path(@book.id)
+    else
+      flash.now[:alert] = "errors prohibited this obj from being saved:"
+      render books_path
+    end
   end
   
   def index
