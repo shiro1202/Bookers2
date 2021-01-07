@@ -1,17 +1,17 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_same_user, only: [:edit, :update]
 
   def index
-    @user = User.new
     @users = User.all
     @user = current_user
+    @book = Book.new
   end
 
   def show
     @book = Book.new
     @user = User.find(params[:id])
     @books = @user.books
-    @user = current_user
   end
 
   def edit
@@ -24,15 +24,21 @@ class UsersController < ApplicationController
       flash[:notice] = "successfully"
       redirect_to user_path
     else
-      flash.now[:alert] = "errors prohibited this obj from being saved:"
-      render user_edit_path
+      render :edit
     end
   end
 
   private
-
+  
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
 
+  def  check_same_user
+    @user = User.find(params[:id])
+    unless @user.id == current_user.id
+      redirect_to user_path(current_user.id)
+    end
+  end
+  
 end
