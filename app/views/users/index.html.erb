@@ -6,25 +6,8 @@
     <% end %>
   <% end %>
   <div class="row">
-    <div class="col-xs-3">
-      <h1>User info</h1>
-      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" ,format: 'no_image.jpg' %>
-      <h5>name</h5>
-      <%= @user.name %>
-      <h5>introduction</h5>
-      <%= @user.introduction %>
-      <%= link_to "",edit_user_path(@user.id), class: "btn btn-outline-secondary btn-block fas fa-user-cog"%>
-
-      <h1>New book</h1>
-      <%= form_with model: @book, local:true do |f| %>
-        <h4>Title</h4>
-        <%= f.text_field :title %>
-        <h4>Opinion</h4>
-        <%= f.text_field :body %>
-        <%= f.submit 'Create Book', class: "col-xs-12 btn btn-primary" %>
-      <% end %>
-    </div>
-    <div class= "col-xs-9 offset-md-1">
+    <%= render 'layouts/sidebar', user: @user, book_new: @book_new %>
+    <div class= "col-xs-8 offset-md-1">
       <h2>Users</h2>
       <table class='table'>
         <% @users.each do |user| %>
