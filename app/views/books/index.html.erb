@@ -7,13 +7,15 @@
   <% end %>
   <div class="row">
     <%= render 'layouts/sidebar', user: @user, book_new: @book %>
-    <div class= "col-xs-9">
+    <div class= "col-md-8 offset-md-1">
       <h2>Books</h2>
       <table class='table'>
         <tr>
           <th></th>
           <th>Title</th>
           <th>Opinion</th>
+          <th></th>
+          <th></th>
         </tr>
         <% @books.each do |book| %>
           <tr>
